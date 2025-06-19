@@ -1,0 +1,10 @@
+﻿.standard-logo {
+    display: flex;
+    float: left;
+    /*border-right: 1px solid #e2e2e2;*/
+    margin-right: 20px;
+}
+    .standard-logo > img {
+        width: auto;
+        height: auto;
+    }

@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <title>交易確認檢核</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=3.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
+  <meta name="robots" content="None, Noimageindex,Noarchive">
+  <!-- browser thumbnail -->
+  <link rel="shortcut icon" href="../Images/ICON.png">
+  <link rel="apple-touch-icon" href="../Images/ICON.png">
+  <!-- framework & plugin css -->
+  <link rel="stylesheet" href="../css/bs5-pnEscrow.min.css">
+  <link rel="stylesheet" href="../css/jquery-confirm.min.css">
+  <!-- style css -->
+  <link rel="stylesheet" href="../css/style.min.css">
+
+</head>
+<body onload="ShowDate()">
+  <!-- loader -->
+<figure id="loaderBox">
+  <div id="loader"></div>
+</figure>
+
+  <header></header>
+
+  <main>
+    <h1 class="pageTit">交易確認檢核</h1>
+
+    <div class="container-fluid searchBox p-4">
+
+        <div class="searchBar row gx-2">
+            <div class="col-auto">
+                <div id="nowDiv" style="display: inline;vertical-align: sub;"></div>
+            </div>
+            <div class="col-auto">
+                <input id="SearchBtn" class="btn btn-info btn-sm" type="button" value="檢核交易資料" />
+            </div>
+        </div>
+
+        <div class="searchBar row gx-2">
+          <div class="col-auto">
+            <select class="form-select form-select-sm" name="SearchPass" id="SearchPass">
+              <option value="請選擇" >請選擇</option>
+              <option value="未覆核" >未覆核</option>
+              <option value="已覆核" >已覆核</option>
+            </select>
+          </div>
+          <div class="col-auto row gx-2">
+            <div class="col-auto">
+              <label for="SearchYearOp" class="form-label"><small>覆核日期(可不選擇)：</small></label>
+            </div>
+            <div class="col-auto">
+              <select class="form-select form-select-sm" name="Year" id="SearchYearOp">
+                <option value="請選擇">請選擇</option>
+              </select>
+            </div>
+            <div class="col-auto">
+              <select class="form-select form-select-sm" name="Month" id="SearchMonthOp">
+                <option value="請選擇">請選擇</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-auto">
+              <input id="SearchBtn" class="btn btn-info btn-sm" type="button" onclick="AAA()" value="查詢" />
+          </div>
+          <div class="col-auto">
+              <input id="ResetBtn" class="btn btn-light btn-sm" type="button" onclick="AAA()" value="重置查詢" />
+          </div>
+      </div>
+
+        <section>
+            <div class="table-responsive mb-3">
+            <table class="table table-sm table-striped table-hover border">
+                <thead>
+                  <tr>
+                    <th>訂單編號</th>
+                    <th>買方姓名</th>
+                    <th>賣方姓名</th>
+                    <th>交易金額</th>
+                    <th>交易日期</th>
+                    <th>物流代碼</th>
+                    <th>鑑賞期起算日期</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>111111111111</td>
+                    <td>邱美美</td>
+                    <td>邱美美</td>
+                    <td>5000.0000</td>
+                    <td>2023/2/28 下午 05:27:47</td>
+                    <td>0000</td>
+                    <td>2023/2/28 上午 12:00:00</td>
+                  </tr>
+                  <tr>
+                    <td>111111111111</td>
+                    <td>邱美美</td>
+                    <td>邱美美</td>
+                    <td>5000.0000</td>
+                    <td>2023/2/28 下午 05:27:47</td>
+                    <td class="text-success">0000</td>
+                    <td>2023/2/28 上午 12:00:00</td>
+                  </tr>
+                  <tr>
+                    <td>111111111111</td>
+                    <td>邱美美</td>
+                    <td>邱美美</td>
+                    <td>5000.0000</td>
+                    <td>2023/2/28 下午 05:27:47</td>
+                    <td>0000</td>
+                    <td>2023/2/28 上午 12:00:00</td>
+                  </tr>
+                  <tr>
+                    <td>111111111111</td>
+                    <td>邱美美</td>
+                    <td>邱美美</td>
+                    <td>5000.0000</td>
+                    <td>2023/2/28 下午 05:27:47</td>
+                    <td class="text-danger">0000</td>
+                    <td>2023/2/28 上午 12:00:00</td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+
+            <nav class="Page">
+                <ul class="pagination pagination-sm">
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Fisst">
+                        <span aria-hidden="true" class="bi bi-chevron-bar-left"></span>
+                    </a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                      <span aria-hidden="true" class="bi bi-chevron-left"></span>
+                    </a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item active" aria-current="page"><span class="page-link">3</span></li>
+                  <li class="page-item"><a class="page-link" href="#">4</a></li>
+                  <li class="page-item"><a class="page-link" href="#">5</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                      <span aria-hidden="true" class="bi bi-chevron-right"></span>
+                    </a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Last">
+                      <span aria-hidden="true" class="bi bi-chevron-bar-right"></span>
+                    </a>
+                  </li>
+                </ul>
+                <small class="text-muted">全部頁數：120 / 資料筆數：123</small>
+            </nav>
+
+            <hr>
+
+            <div class="text-center mt-2 print_parts"></div>
+              <div class="gogiBlock">
+                  <span class="me-5">未覆核或已覆核交易金額總計：<span class="text-warning">1038969.0000</span></span>
+                  <span>未覆核或已覆核交易應匯金額總計：<span class="text-warning">1021138.0000</span></span>
+              </div>
+              <div>
+                <span class="me-2">主管：______________</span>
+                <span class="me-2">覆核：______________</span>
+                <span class="me-2">經辦：______________</span>
+              </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    </main>
+
+    <footer></footer>
+
+    <script src="../Script/jquery-3.4.1.min.js"></script>
+    <script src="../Script/bootstrap.bundle.min.js"></script>
+    <script src="../Script/jquery-confirm.min.js"></script>
+    <script>
+        $(document).ready(function(){
+          $('header').load('../share/nav.html');
+          $('footer').load('../share/footer.html');
+        });
+    </script>
+
+    <script>
+        function ShowDate() {
+            var date = new Date(); //日期对象
+            var now = "";
+            now = date.getFullYear() + "年";
+            now = now + (date.getMonth() + 1) + "月";                        //取月的时候取的是当前月-1如果想取当前月+1就可以了
+            now = now + date.getDate() + "日";
+            now = now + date.getHours() + "時";
+            now = now + date.getMinutes() + "分";
+            now = now + date.getSeconds() + "秒";
+            document.getElementById("nowDiv").innerHTML = now;              //div的html是now这个字符串
+            setTimeout("ShowDate()", 1000);                                 //设置1000毫秒就是1秒，調用ShowDate方法
+        }
+    </script>
+
+    <!-- loading -->
+    <script src="../Script/loading.js"></script>
+</body>
+</html>
+

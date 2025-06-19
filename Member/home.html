@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <title>GE管理系統</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=3.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
+  <meta name="robots" content="None, Noimageindex,Noarchive">
+  <!-- browser thumbnail -->
+  <link rel="shortcut icon" href="../Images/ICON.png">
+  <link rel="apple-touch-icon" href="../Images/ICON.png">
+  <!-- framework & plugin css -->
+  <link rel="stylesheet" href="../css/bs5-pnEscrow.min.css">
+  <link rel="stylesheet" href="../css/jquery-confirm.min.css">
+  <!-- style css -->
+  <link rel="stylesheet" href="../css/style.min.css">
+
+</head>
+<body>
+  <!-- loader -->
+<figure id="loaderBox">
+  <div id="loader"></div>
+</figure>
+
+  <header></header>
+
+  <main class="text-center p-4">
+      <h2 class="">~歡迎進入~</h2>
+      <div class="d-flex justify-content-center align-items-center mb-2">
+        <span class="bi bi-bank2 h4 text-warning"></span>
+        <h1 class="text-warning mx-2">GE管理系統</h1>
+        <span class="bi bi-bank2 h4 text-warning"></span>
+      </div>
+
+      <img src="../Images/indexImg.png" alt="" style="max-width: 800px;">
+  </main>
+
+  <footer></footer>
+
+  <script src="../Script/jquery-3.4.1.min.js"></script>
+  <script src="../Script/bootstrap.bundle.min.js"></script>
+  <script src="../Script/jquery-confirm.min.js"></script>
+  <script>
+      $(document).ready(function(){
+        $('header').load('../share/nav.html');
+        $('footer').load('../share/footer.html');
+      });
+  </script>
+
+  <!-- loading -->
+  <script src="../Script/loading.js"></script>
+</body>
+</html>

@@ -1,0 +1,379 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <title>會員資料檢視</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=3.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
+  <meta name="robots" content="None, Noimageindex,Noarchive">
+  <!-- browser thumbnail -->
+  <link rel="shortcut icon" href="../Images/ICON.png">
+  <link rel="apple-touch-icon" href="../Images/ICON.png">
+  <!-- framework & plugin css -->
+  <link rel="stylesheet" href="../css/bs5-pnEscrow.min.css">
+  <link rel="stylesheet" href="../css/jquery.datetimepicker.min.css">
+  <!-- style css -->
+  <link rel="stylesheet" href="../css/style.min.css">
+
+</head>
+<body>
+  <!-- loader -->
+<figure id="loaderBox">
+  <div id="loader"></div>
+</figure>
+
+  <header></header>
+
+  <main>
+    <input type="hidden" id="message" value="@ViewBag.message" />
+
+    <h1 class="pageTit">會員資料檢視</h1>
+
+    <div class="container-fluid searchBox p-4">
+
+        <form action="../Member/Query_member" method="post">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab">
+                  <button class="nav-link active" id="ADD" data-bs-toggle="tab" data-bs-target="#add" type="button">會員資料管理</button>
+                  <button class="nav-link" id="QUERY" data-bs-toggle="tab" data-bs-target="#query" type="button">搜尋會員明細</button>
+                </div>
+            </nav>
+            <section class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active mt-4" id="add">
+
+                    <div class="searchBar row gx-2">
+                        <div class="col-auto me-3">
+                            <label class="form-label">現在模式為：<span class="text-danger" id="text">新增</span></label>
+                        </div>
+                        <div class="col-auto">
+                            <label class="form-label">切換模式：</label>
+                            <input id="create" onclick="Create()" class="btn btn-sm btn-warning" type="button" value="新增" />
+                            <input id="edit" onclick="Edit()" class="btn btn-sm btn-warning" type="button" value="修改" />
+                            <input id="see" onclick="See()" class="btn btn-sm btn-warning" type="button" value="檢視" />
+                        </div>
+                    </div>
+
+                    <fieldset class="row labelR mb-4">
+                        <div>
+                            <div class="row">
+                                <label for="merchant_id" class="col-md-5 col-form-label">選擇身分：</label>
+                                <div class="col-md-7">
+                                    <select class="form-select" id="username" name="Select_compuserid" required>
+                                        <option>請選擇</option>
+                                        <option value="">身分01</option>
+                                        <option value="">身分02</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row">
+                                <label for="id" class="col-md-5 col-form-label">身分證字號/統編：</label>
+                                <div class="col-md-7">
+                                    <input type="text" class="form-control" id="id" name="Mem_id" placeholder="請輸入" onchange="change(this)" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row">
+                                <label for="Name" class="col-md-5 col-form-label">會員姓名/公司名稱：</label>
+                                <div class="col-md-7">
+                                    <input type="text" class="form-control" id="Name" name="Mem_Name" placeholder="請輸入" minlength="2" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row">
+                                <label class="col-md-5 col-form-label">會員種類：</label>
+                                <div class="col-md-7">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="Q_kind" name="Q_kind" value="1">
+                                        <label class="form-check-label">一般會員</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="Q_kind2" name="Q_kind" value="2">
+                                        <label class="form-check-label">特約商店</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row">
+                                <label for="Email" class="col-md-5 col-form-label">會員Email：</label>
+                                <div class="col-md-7">
+                                    <input id="Kind" name="Mem_Kind" type="hidden" value="" />
+                                    <input type="emali" class="form-control" id="Email" name="Mem_Email" placeholder="請輸入" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row">
+                                <label for="BankName" class="col-md-5 col-form-label">匯款戶名：</label>
+                                <div class="col-md-7">
+                                    <input type="text" class="form-control" id="BankName" name="Mem_BankName" minlength="2" placeholder="請輸入" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row">
+                                <label for="BankAcc" class="col-md-5 col-form-label">匯款帳號：</label>
+                                <div class="col-md-7">
+                                    <input type="text" class="form-control" id="BankAcc" name="Mem_BankAcc" placeholder="請輸入" minlength="14" maxlength="16" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row">
+                                <label for="Name" class="col-md-5 col-form-label">銀行手續費：</label>
+                                <div class="col-md-7">
+                                    <span id="pay">帶入手續費數字</span>
+                                    <input type="tel" class="form-control" id="handpay" name="Handfee_bank" type="hidden" value="0" />
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </fieldset>
+
+                    <div class="text-center">
+                        <input id="cancel" name="cancel" onclick="Cancel()" class="btn btn-light mx-2" type="button" value="取消" />
+                        <input id="EDITSave" name="EDITSave" onclick="EditSave()" class="btn btn-warning mx-2" type="submit" value="修改" />
+                        <input id="ADDSave" name="ADDSave" onclick="AddSave()" class="btn btn-primary mx-2" type="submit" value="新增" />
+                    </div>
+
+                </div>
+                <div class="tab-pane fade mt-4" id="query">
+
+                    <div class="searchBarH">
+                        <fieldset class="row finds mb-4">
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <label for="query_select" class="col-sm-4 col-form-label"><input class="form-check-input" type="checkbox" id="SE" />字串搜尋：</label>
+                                    <div class="col-sm-4">
+                                        <select class="form-select form-select-sm" id="query_select" name="query_select">
+                                            <option value="mem_name">會員姓名</option>
+                                            <option value="mem_id_256">會員身分證</option>
+                                            <option value="mem_email_256">會員eMail</option>
+                                            <option value="mem_tel_256">連絡電話</option>
+                                            <option value="mem_add_256">會員地址</option>
+                                            <option value="mem_bankname">匯款戶名</option>
+                                            <option value="mem_bankaccno">銀行代碼</option>
+                                            <option value="mem_bankacc">匯款帳號</option>
+                                            <option value="onsaleno_256">代理商編號</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control form-control-sm" id="textvalue" name="textvalue" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <label for="ContractDateStart" class="col-sm-4 col-form-label"><input class="form-check-input" type="checkbox" id="CD" />時間：</label>
+                                    <div class="col-sm-8">
+                                        <div class="row days">
+                                            <div class="col-sm-5">
+                                                <input type="text" class="form-control form-control-sm datetimepicker" id="ContractDateStart" name="ContractDateStart" placeholder="年-月-日" />
+                                            </div>
+                                            <div class="col-sm-2 bridge"><span>至</span></div>
+                                            <div class="col-sm-5">
+                                                <input type="text" class="form-control form-control-sm datetimepicker" id="ContractDateEnd" name="ContractDateEnd" placeholder="年-月-日" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <label class="col-sm-4 col-form-label"><input class="form-check-input" type="checkbox" id="QK" />會員類別：</label>
+                                    <div class="col-sm-8">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" id="Q_kind" name="Q_kind" value="1">
+                                            <label class="form-check-label">一般會員</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" id="Q_kind2" name="Q_kind"  value="2">
+                                            <label class="form-check-label">特約商店</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <label class="col-sm-4 col-form-label"><input class="form-check-input" type="checkbox" id="QL" />快撥會員：</label>
+                                    <div class="col-sm-8">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" id="Q_LEVEL" name="Q_LEVEL" value="0">
+                                            <label class="form-check-label">所有</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" id="Q_LEVEL2" name="Q_LEVEL"  value="1">
+                                            <label class="form-check-label">A級會員</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" id="Q_LEVEL3" name="Q_LEVEL"  value="2">
+                                            <label class="form-check-label">B級會員</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <div class="text-center">
+                            <input id="cancel" onclick="Cancel()" class="btn btn-light mx-2" type="button" value="清除" />
+                            <input id="search" onclick="Search()" class="btn btn-primary mx-2" type="submit" value="查詢" />
+                        </div>
+                    </div>
+
+                    <section>
+                        <div class="table-responsive mb-3">
+                            <table class="table table-sm table-striped table-hover caption-top border tableSF">
+                                <thead>
+                                    <tr>
+                                      <th></th>
+                                      <th>身分證</th>
+                                      <th>姓名</th>
+                                      <th>類別</th>
+                                      <th>匯款戶名</th>
+                                      <th>銀行代碼</th>
+                                      <th>匯款帳號</th>
+                                      <th>銀行手續費</th>
+                                      <th>是否快撥會員</th>
+                                      <th>快撥會員等級</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                      <td><button class="btn btn-sm btn-info">選取</button></td>
+                                      <td>1111</td>
+                                      <td>股份有限公司</td>
+                                      <td>一般會員</td>
+                                      <td>0000000</td>
+                                      <td>0</td>
+                                      <td>0</td>
+                                      <td>30</td>
+                                      <td>False</td>
+                                      <td>無</td>
+                                    </tr>
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <nav class="Page">
+                            <ul class="pagination pagination-sm">
+                              <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Fisst">
+                                    <span aria-hidden="true" class="bi bi-chevron-bar-left"></span>
+                                </a>
+                              </li>
+                              <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                  <span aria-hidden="true" class="bi bi-chevron-left"></span>
+                                </a>
+                              </li>
+                              <li class="page-item"><a class="page-link" href="#">1</a></li>
+                              <li class="page-item"><a class="page-link" href="#">2</a></li>
+                              <li class="page-item active" aria-current="page"><span class="page-link">3</span></li>
+                              <li class="page-item"><a class="page-link" href="#">4</a></li>
+                              <li class="page-item"><a class="page-link" href="#">5</a></li>
+                              <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                  <span aria-hidden="true" class="bi bi-chevron-right"></span>
+                                </a>
+                              </li>
+                              <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Last">
+                                  <span aria-hidden="true" class="bi bi-chevron-bar-right"></span>
+                                </a>
+                              </li>
+                            </ul>
+                            <small class="text-muted">全部頁數：120 / 資料筆數：123</small>
+                        </nav>
+
+                    </section>
+
+                </div>
+            </section>
+        </form>
+
+        <hr>
+
+        <div class="mt-5 container bg-dark p-3">
+            <div class="row gx-5 gy-3 items">
+                <div class="col-auto">所有會員數：<span>11,334,478</span>人</div>
+                <div class="col-auto">買家會員數：<span>11,334,478</span>人</div>
+                <div class="col-auto">賣家會員數：<span>11,334,478</span>人</div>
+                <div class="col-auto">今日新增會員：<span>11,334,478</span>人</div>
+                <div class="col-auto">今日新增買家：<span>11,334,478</span>人</div>
+                <div class="col-auto">今日新增賣家：<span>11,334,478</span>人</div>
+            </div>
+        </div>
+
+    </div>
+
+  </main>
+
+    <footer></footer>
+
+  <script src="../Script/jquery-3.4.1.min.js"></script>
+  <script src="../Script/bootstrap.bundle.min.js"></script>
+  <script src="../Script/jquery.datetimepicker.full.min.js"></script>
+  <script>
+      $(document).ready(function(){
+        $('header').load('../share/nav.html');
+        $('footer').load('../share/footer.html');
+      });
+
+      //日期時間選擇限制
+      $.datetimepicker.setLocale('ch');
+        $('.datetimepicker').datetimepicker({
+            format : 'Y-m-d',
+            timepicker : false,
+            autoclose: true
+        });
+  </script>
+
+    <script>
+        var add = "新增模式";
+        document.getElementById('text').innerText = add;
+        $('#EDITSave').hide();
+        $('#par').hide();
+        $(window).on('load', function () {
+            var message = $('#message').val();
+            console.log(message);
+            if (message != "") {
+                document.getElementById('ADDSave').disabled = true;
+                document.getElementById('EDITSave').disabled = true;
+                document.getElementById('cancel').disabled = true;
+                document.getElementById('create').disabled = true;
+                document.getElementById('edit').disabled = true;
+                $('#see').click();
+            }
+        });
+        $(document).ready(function () {
+            $(".tab-nav-wrapper li.active").click();
+            $($(".tab-nav-wrapper li.active a").attr("href")).show();
+
+            $(".tab-nav-wrapper li").click(function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                $(".tab-nav-wrapper li").removeClass("active");
+                $(this).addClass("active");
+
+                var target = $(this).find("a").attr("href");
+                $(".tab-content-wrapper").find(".tab-content").hide();
+                $(".tab-content-wrapper").find(target).show();
+            });
+        });
+    </script>
+
+
+    <!-- loading -->
+    <script src="../Script/loading.js"></script>
+</body>
+</html>

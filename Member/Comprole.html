@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <title>角色管理</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=3.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
+  <meta name="robots" content="None, Noimageindex,Noarchive">
+  <!-- browser thumbnail -->
+  <link rel="shortcut icon" href="../Images/ICON.png">
+  <link rel="apple-touch-icon" href="../Images/ICON.png">
+  <!-- framework & plugin css -->
+  <link rel="stylesheet" href="../css/bs5-pnEscrow.min.css">
+  <!-- style css -->
+  <link rel="stylesheet" href="../css/style.min.css">
+
+</head>
+<body>
+  <!-- loader -->
+<figure id="loaderBox">
+  <div id="loader"></div>
+</figure>
+
+  <header></header>
+
+  <main>
+    <h1 class="pageTit">角色管理</h1>
+
+    <form action="../Member/Comprole" method="post">
+        <input name="VerificationToken" type="hidden" value="fLcCEIJoLsl" />
+        <input type="hidden" id="message" value="" />
+
+        <div class="container-fluid searchBox p-4">
+
+            <div class="searchBar row gx-2">
+                <div class="col-auto me-3">
+                    <label class="form-label">現在模式為：<span class="text-danger" id="text">新增</span></label>
+                </div>
+                <div class="col-auto">
+                    <label class="form-label">切換模式：</label>
+                    <input onclick="CreateRole()" class="btn btn-sm btn-warning" type="button" value="新增" />
+                    <input onclick="EditRole()" class="btn btn-sm btn-warning" type="button" value="修改" />
+                </div>
+            </div>
+
+            <fieldset class="searchBarH">
+                <div class="row finds">
+                    <div class="col-lg-6" id="edit">
+                        <div class="row">
+                            <label for="comprolename" class="col-md-4 col-form-label">選擇角色：</label>
+                            <div class="col-md-8">
+                                <select class="form-select form-select-sm" id="comprolename" name="Select_comproleid" required>
+                                    <option value="">請選擇欲修改的角色</option>
+                                    <option value="Last">Last</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <label for="roleno" class="col-md-4 col-form-label">角色編號：</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control form-control-sm" id="roleno" name="Roleno" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <label for="rolename" class="col-md-4 col-form-label">角色名稱：</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control form-control-sm" id="rolename" name="Rolename" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <label for="depkind" class="col-md-4 col-form-label">角色所屬部門：</label>
+                            <div class="col-md-8">
+                                <select class="form-select form-select-sm" id="depkind" name="Depkind" required>
+                                    <option value="">選擇部門</option>
+                                    <option value="Last">Last</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="p-2 mb-4">
+                <h5 class="text-center text-primary"><b>角色的功能權限設定</b></h5>
+
+
+                <section class="border p-2 powerBox">
+                    <div class="form-check border-bottom mb-3 pb-2">
+                        <input class="form-check-input all" type="checkbox" id="all" name="all" />
+                        <label class="form-check-label" for="all">全部選取</label>
+                    </div>
+
+                    <div class="row power">
+
+                    <div>
+                        <h6><b>資料維護</b></h6>
+                        <div class="mb-4">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" name="14" value="14" />
+                                <label class="form-check-label">交易退款覆核</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" name="15" value="15" checked />
+                                <label class="form-check-label">交易確認檢核</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h6><b>資料匯入</b></h6>
+                        <div class="mb-4">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" name="44" value="44" />
+                                <label class="form-check-label">會員資料匯入</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" name="12" value="12" checked />
+                                <label class="form-check-label">交易資料匯入</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" name="40" value="40" checked />
+                                <label class="form-check-label">匯入轉帳資料</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" name="5" value="5" />
+                                <label class="form-check-label">退款資料匯入</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" name="54" value="54" checked />
+                                <label class="form-check-label">請款明細匯入</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h6><b>資料放行</b></h6>
+                        <div class="mb-4">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" name="43" value="43" />
+                                <label class="form-check-label">會員異動放行</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" name="11" value="11" checked />
+                                <label class="form-check-label">交易資料放行</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" name="13" value="13" checked />
+                                <label class="form-check-label">交易確認放行</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h6><b>撥款系統</b></h6>
+                        <div class="mb-4">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" name="49" value="49" />
+                                <label class="form-check-label">撥款程序</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" name="41" value="41" />
+                                <label class="form-check-label">匯款帳務調整</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" name="64" value="64" checked />
+                                <label class="form-check-label">退款帳務調整</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h6><b>報表及查詢</b></h6>
+                        <div class="mb-4">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" name="45" value="45" />
+                                <label class="form-check-label">會員資料檢視</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" name="48" value="48" />
+                                <label class="form-check-label">撥款記錄查詢</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" name="7" value="7" checked />
+                                <label class="form-check-label">帳務報表</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" name="65" value="65" />
+                                <label class="form-check-label">錯誤日誌查詢</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h6><b>系統維護</b></h6>
+                        <div class="mb-4">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" name="8" value="8" />
+                                <label class="form-check-label">代理商資料維護</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" name="35" value="35" checked />
+                                <label class="form-check-label">控管帳號維護</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                </section>
+            </fieldset>
+
+
+            <div class="text-center">
+                <input onclick="Cancel()" class="btn btn-light mx-2" type="button" value="取消" />
+                <input id="createsave" onclick="aaa()" class="btn btn-primary mx-2" type="button" value="修改角色" />
+                <input id="createsave" onclick="aaa()" class="btn btn-primary mx-2" type="button" value="新增角色" />
+            </div>
+
+        </div>
+    </form>
+  </main>
+
+  <footer></footer>
+
+   <script src="../Script/jquery-3.4.1.min.js"></script>
+   <script src="../Script/bootstrap.bundle.min.js"></script>
+   <script>
+      $(document).ready(function(){
+        $('header').load('../share/nav.html');
+        $('footer').load('../share/footer.html');
+
+        //checkbox全選
+        $('.all').click(function() {
+            $('.form-check-input').prop('checked', this.checked);
+        });
+
+      });
+   </script>
+
+    <script>
+        function CreateRole() {
+            $('#createsave').show();
+            $('#editsave').hide();
+            $('#edit').hide();
+            $('.btn_NOcheck').css("visibility", "hidden");
+            $('.btn_NAMEcheck').css("visibility", "hidden");
+            document.getElementById('text').innerText = "新增";
+        }
+        function EditRole() {
+            $('#createsave').hide();
+            $('#editsave').show();;
+            $('#edit').show();
+            $('.btn_NOcheck').css("visibility", "hidden");
+            $('.btn_NAMEcheck').css("visibility", "hidden");
+            document.getElementById('text').innerText = "修改";
+        }
+    </script>
+
+    <!-- loading -->
+    <script src="../Script/loading.js"></script>
+</body>
+</html>

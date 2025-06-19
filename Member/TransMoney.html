@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <title>撥款程序</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=3.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
+  <meta name="robots" content="None, Noimageindex,Noarchive">
+  <!-- browser thumbnail -->
+  <link rel="shortcut icon" href="../Images/ICON.png">
+  <link rel="apple-touch-icon" href="../Images/ICON.png">
+  <!-- framework & plugin css -->
+  <link rel="stylesheet" href="../css/bs5-pnEscrow.min.css">
+  <link rel="stylesheet" href="../css/jquery-confirm.min.css">
+  <link rel="stylesheet" href="../css/jquery.datetimepicker.min.css">
+  <!-- style css -->
+  <link rel="stylesheet" href="../css/style.min.css">
+
+</head>
+<body onload="ShowDate()">
+  <!-- loader -->
+<figure id="loaderBox">
+  <div id="loader"></div>
+</figure>
+
+  <header></header>
+
+  <main>
+
+    <h1 class="pageTit">撥款程序</h1>
+
+    <div class="container-fluid searchBox p-4">
+        <div class="searchBar row gx-2">
+            <div class="col-auto">
+                <label for="exampleInputEmail1" class="form-label">預定撥款日期：</label>
+            </div>
+            <div class="col-auto" id="">
+                <input id="" class="form-control form-control-sm datetimepicker" type="text" placeholder="年-月-日" />
+            </div>
+            <div class="col-auto">
+                <input id="" class="btn btn-primary btn-sm" type="button" value="產生撥款清單" />
+            </div>
+        </div>
+
+        <section>
+            <h5 class="text-warning mb-4">確認撥款清單</h5>
+
+            <div class="table-responsive">
+                <table class="table table-sm table-striped table-hover border tableSF">
+                    <thead>
+                      <tr>
+                        <th>類別</th>
+                        <th>撥款日期</th>
+                        <th>撥款總額</th>
+                        <th>匯款調整</th>
+                        <th>實撥金額</th>
+                        <th>轉帳來源</th>
+                        <th>備償撥補</th>
+                        <th>撥款戶名</th>
+                        <th>撥款帳號</th>
+                        <th>使用FEDI</th>
+                        <th>是否快撥</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="bg-danger">
+                        <th>系統商</th>
+                        <td>2022/11/1</td>
+                        <td>3,456,789</td>
+                        <td>匯款調整</td>
+                        <td>3,456,789</td>
+                        <td>轉帳來源</td>
+                        <td>備償撥補</td>
+                        <td>撥款戶名</td>
+                        <td>1111</td>
+                        <td>使用FEDI</td>
+                        <td>否</td>
+                      </tr>
+                      <tr>
+                        <th>買家</th>
+                        <td>2022/11/1</td>
+                        <td>3,456,789</td>
+                        <td>匯款調整</td>
+                        <td>3,456,789</td>
+                        <td>轉帳來源</td>
+                        <td>備償撥補</td>
+                        <td>撥款戶名</td>
+                        <td>1111</td>
+                        <td>使用FEDI</td>
+                        <td>否</td>
+                      </tr>
+                      <tr>
+                        <th>買家</th>
+                        <td>2022/11/1</td>
+                        <td>3,456,789</td>
+                        <td>匯款調整</td>
+                        <td>3,456,789</td>
+                        <td>轉帳來源</td>
+                        <td>備償撥補</td>
+                        <td>撥款戶名</td>
+                        <td>1111</td>
+                        <td>使用FEDI</td>
+                        <td>否</td>
+                      </tr>
+                      <tr class="bg-primary">
+                        <th>總計</th>
+                        <td>2022/11/1</td>
+                        <td>3,456,789</td>
+                        <td>匯款調整</td>
+                        <td>3,456,789</td>
+                        <td>轉帳來源</td>
+                        <td>備償撥補</td>
+                        <td>撥款戶名</td>
+                        <td>1111</td>
+                        <td>使用FEDI</td>
+                        <td>否</td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+            </div>
+
+            <hr>
+
+            <div class="row g-2">
+                <div class="col-sm-6 col-md-4 col-xl-3 col-3xl-2">
+                資料總筆數：<span class="text-warning">1111000</span>
+                </div>
+                <div class="col-sm-6 col-md-4 col-xl-3 col-3xl-2">
+                交易總筆數：<span class="text-warning">1111000</span>
+                </div>
+                <div class="col-sm-6 col-md-4 col-xl-3 col-3xl-2">
+                實撥總金額：<span class="text-warning">1111000</span>
+                </div>
+                <div class="col-sm-6 col-md-4 col-xl-3 col-3xl-2">
+                交易總金額：<span class="text-danger">1111000</span>
+                </div>
+                <div class="col-sm-6 col-md-4 col-xl-3 col-3xl-2">
+                銀行匯款手續費：<span class="text-warning">1111000</span>
+                </div>
+                <div class="col-sm-6 col-md-4 col-xl-3 col-3xl-2">
+                信託匯款手續費：<span class="text-warning">1111000</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+  </main>
+
+    <footer></footer>
+
+    <script src="../Script/jquery-3.4.1.min.js"></script>
+    <script src="../Script/bootstrap.bundle.min.js"></script>
+    <script src="../Script/jquery-confirm.min.js"></script>
+    <script src="../Script/jquery.datetimepicker.full.min.js"></script>
+    <script>
+        $(document).ready(function(){
+          $('header').load('../share/nav.html');
+          $('footer').load('../share/footer.html');
+        });
+
+        //日期時間選擇限制
+        $.datetimepicker.setLocale('ch');
+        $('.datetimepicker').datetimepicker({
+            value: new Date(),
+            format : 'Y-m-d',
+            timepicker : false,
+            autoclose: true
+        });
+    </script>
+
+    <!-- loading -->
+    <script src="../Script/loading.js"></script>
+</body>
+</html>

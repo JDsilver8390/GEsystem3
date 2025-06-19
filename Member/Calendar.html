@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <title>營業日設定</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=3.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
+  <meta name="robots" content="None, Noimageindex,Noarchive">
+  <!-- browser thumbnail -->
+  <link rel="shortcut icon" href="../Images/ICON.png">
+  <link rel="apple-touch-icon" href="../Images/ICON.png">
+  <!-- framework & plugin css -->
+  <link rel="stylesheet" href="../css/bs5-pnEscrow.min.css">
+  <link rel="stylesheet" href="../css/jquery-confirm.min.css">
+  <link rel="stylesheet" href="../css/jquery.datetimepicker.min.css">
+  <link rel="stylesheet" href="../css/FullCalendar_Escrow_min.css">
+  <!-- style css -->
+  <link rel="stylesheet" href="../css/style.min.css">
+
+</head>
+<body>
+  <!-- loader -->
+<figure id="loaderBox">
+  <div id="loader"></div>
+</figure>
+
+  <header></header>
+
+  <main>
+    <h1 class="pageTit">營業日設定</h1>
+    <p class="text-center">點擊表中日期可修改當日設定</p>
+    <div class="mx-4 colorDemo">
+        <span class="me-2 text-nowrap">顏色表示：</span><br>
+        <span class="me-3 text-nowrap"><span style="background-color:#000;border: 1px solid #666;">&nbsp;&nbsp;&nbsp;&nbsp;</span> 本日</span>
+        <span class="me-3 text-nowrap"><span style="background-color:#00456d;border: 1px solid #666;">&nbsp;&nbsp;&nbsp;&nbsp;</span> 假日(含六日、補假)</span>
+        <span class="me-3 text-nowrap"><span style="background-color:#7c1616;border: 1px solid #666;">&nbsp;&nbsp;&nbsp;&nbsp;</span> 上班日</span>
+    </div>
+
+    <form action="../Member/Calendar" method="post">
+        <input name="__RequestVerificationToken" type="hidden" value="EnnuNXJnrpqEs5JZGbfER6fn7F7Lc49kQZU0Ir6jP9iWdUhXmqViYpUr2qy2uMjob7M7XBIE4bR1m3snLlLt1dQOv_coyX02rFZmx5pJHus1" />
+        <input type="hidden" id="message" />
+
+        <div class="container-fluid searchBox p-4">
+
+            <div class="searchBar">
+                <div class="row gx-2">
+                    <div class="col-auto">
+                        <input type="text" class="form-control form-control-sm datetimepicker" id="changedate" name="changedate" placeholder="年-月-日" />
+                    </div>
+                    <div class="col-auto">
+                        <input class="btn btn-info btn-sm" id="changeBtn" type="button" value="跳轉" />
+                    </div>
+                </div>
+            </div>
+
+            <div id="calendar"></div>
+
+            <div class="text-center mt-3">
+                <input type="button" class="btn btn btn-primary" id="calendar_button" onclick="aaa()" value="保存設定" />
+            </div>
+
+            <hr class="my-">
+
+            <div class="searchBar">
+                <div class="row gx-3">
+                    <div class="col-auto">
+                        <label for="SearchTime" class="form-label"><small>將：</small></label>
+                    </div>
+                    <div class="col-auto">
+                        <select class="form-select form-select-sm" name="selectyear" id="selectyear" style="width: 110px;">
+                            <option value="2021">2021年</option>
+                            <option value="2022">2022年</option>
+                            <option value="2022">2023年</option>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <input class="btn btn-primary btn-sm" id="setholi" type="button" onclick="aaa()" value="周六日設為假日" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</main>
+
+<footer></footer>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">參數設定</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <span>日期:</span>
+            <span id="choosedate"></span>
+          </div>
+          <div>
+            <span>參數:</span>
+            <input type="button" class="btn btn-sm btn-warning me-2" id="work" value="上班日" />
+            <input type="button" class="btn btn-sm btn-warning me-2" id="holi" value="假日" />
+            <label id="dateset" class="text-primary fw-bold"></label>
+            <input id="kindset" style="visibility:hidden;" value="" />
+          </div>
+        </div>
+        <div class="modal-footer">
+            <input type="button" class="btn btn-light" data-bs-dismiss="modal" value="關閉" />
+            <input type="button" class="btn btn-primary" id="savedate" value="確定" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+   <script src="../Script/jquery-3.4.1.min.js"></script>
+   <script src="../Script/bootstrap.bundle.min.js"></script>
+   <script src="../Script/jquery-confirm.min.js"></script>
+   <script src="../Script/jquery.datetimepicker.full.min.js"></script>
+   <script src="../Script/FullCalendar.min.js"></script>
+
+   <script>
+      $(document).ready(function(){
+        $('header').load('../share/nav.html');
+        $('footer').load('../share/footer.html');
+
+        //日期時間選擇限制
+        $.datetimepicker.setLocale('ch');
+        $('.datetimepicker').datetimepicker({
+            format : 'Y-m-d',
+            timepicker : false,
+            autoclose: true
+        });
+
+      });
+   </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
+
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        selectable: true,
+        headerToolbar: {
+            left:'',
+            center: 'title',
+            right: 'prev,next today'
+        },
+        locale: 'zh-cn',
+        contentHeight: "auto",
+        dateClick: function (info) {
+            var date = info.dateStr;
+            document.getElementById('kindset').value = "";
+            document.getElementById('dateset').innerText = "";
+            $('#exampleModalCenter').modal('toggle');
+            document.getElementById('choosedate').innerText = date;
+            $("#work").on('click', function () {
+                var kind = 2;
+                document.getElementById('kindset').value = kind;
+                document.getElementById('dateset').innerText = "上班日";
+            });
+            $("#holi").on('click', function () {
+                var kind = 1;
+                document.getElementById('kindset').value = kind;
+                document.getElementById('dateset').innerText = "假日";
+            });
+
+        },
+        editable: true,
+        events: [
+            {
+                "title": "标题123",
+                "start": "2023-01-1T12:00:00",
+                "end": "2023-01-2T13:00:00",
+                "duration": "05:00",
+                "className": "yellow"
+            }, {
+                "title": "标题456",
+                "start": "2023-01-05T10:30:00",
+                "end": "2023-01-06T12:30:00",
+                "className": "red"
+            }
+        ],
+      });
+
+        // 導航到指定日期
+        $('#changeBtn').click(function() {
+            var date = $('#changedate').val();
+            if (date == "") {
+                alert("請選擇跳轉日期");
+            }
+            else {
+                calendar.gotoDate(date);
+                calendar.select(date);
+            }
+        });
+
+      // 渲染日曆
+      calendar.render();
+    });
+  </script>
+
+
+    <!-- loading -->
+    <script src="../Script/loading.js"></script>
+</body>
+</html>

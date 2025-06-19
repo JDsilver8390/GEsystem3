@@ -1,0 +1,215 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <title>交易狀態修正</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=3.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
+  <meta name="robots" content="None, Noimageindex,Noarchive">
+  <!-- browser thumbnail -->
+  <link rel="shortcut icon" href="../Images/ICON.png">
+  <link rel="apple-touch-icon" href="../Images/ICON.png">
+  <!-- framework & plugin css -->
+  <link rel="stylesheet" href="../css/bs5-pnEscrow.min.css">
+  <link rel="stylesheet" href="../css/jquery-confirm.min.css">
+  <!-- style css -->
+  <link rel="stylesheet" href="../css/style.min.css">
+
+</head>
+<body>
+  <!-- loader -->
+<figure id="loaderBox">
+  <div id="loader"></div>
+</figure>
+
+  <header></header>
+
+  <main>
+  <h1 class="pageTit">交易狀態修正</h1>
+
+    <form action="../Member/Pass_PaymentGoGiStatus" method="post">
+
+        <div class="container-fluid searchBox p-4">
+
+            <div class="searchBar row gx-2">
+                <div class="col-auto">
+                    <label class="form-label">請選擇欲要上傳的檔案：</label>
+                </div>
+                <div class="col-auto">
+                    <input type="file" class="form-control form-control-sm" id="SearchFile" name="Member_File" />
+                </div>
+                <div class="col-auto">
+                    <input id="SearchBtn" class="btn btn-info btn-sm" type="button" onclick="AAA()" value="上傳" />
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-sm table-striped table-hover border">
+                    <thead>
+                      <tr>
+                        <th>訂單編號</th>
+                        <th>交易金額</th>
+                        <th>交易日期</th>
+                        <th>應匯金額</th>
+                        <th>指示金額</th>
+                        <th>狀態</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><a href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">3000002302158231696</a></td>
+                        <td>2025.0000</td>
+                        <td>2023/4/1 上午 10:47:43</td>
+                        <td>1991.0000</td>
+                        <td>1991.0000</td>
+                        <td>退款</td>
+                      </tr>
+                      <tr>
+                        <td><a href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">3000002302158231696</a></td>
+                        <td>2025.0000</td>
+                        <td>2023/4/1 上午 10:47:43</td>
+                        <td>1991.0000</td>
+                        <td>1991.0000</td>
+                        <td>退款</td>
+                      </tr>
+                      <tr>
+                        <td><a href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">3000002302158231696</a></td>
+                        <td>2025.0000</td>
+                        <td>2023/4/1 上午 10:47:43</td>
+                        <td>1991.0000</td>
+                        <td>1991.0000</td>
+                        <td>退款</td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center">
+                <a class="btn btn-danger" onclick="aaa()">拒絕</a>
+                <a class="btn btn-warning" onclick="aaa()">附加</a>
+                <a class="btn btn-primary" onclick="aaa()" id="ReleaseBtn">放行</a>
+            </div>
+
+        </div>
+
+    </form>
+</main>
+
+<aside class="offcanvas offcanvas-end offLG" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5 class="text-primary" id="offcanvasRightLabel">詳細資訊</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <input type="hidden" id="Par_message2" />
+        <form action="../Member/Paymentdetail?orderno=4100002304014292465" method="post">
+            <table class="table table-sm stack">
+                <tr>
+                    <th>訂單編號</th>
+                    <td class="text-warning" id="searchOrderno">111111111</td>
+                </tr>
+                <tr>
+                    <th>交易日期</th>
+                    <td>2022/11/1 下午 06:11:56</td>
+                </tr>
+                <tr>
+                    <th>交易金額</th>
+                    <td>5,842</td>
+                </tr>
+                <tr>
+                    <th>代理商名稱</th>
+                    <td>代理商名稱</td>
+                </tr>
+                <tr>
+                    <th>商家名稱</th>
+                    <td>商家名</td>
+                </tr>
+                <tr>
+                    <th>商家身份證</th>
+                    <td>AAAAAAA</td>
+                </tr>
+                <tr>
+                    <th>物流費</th>
+                    <td class="text-danger">150</td>
+                </tr>
+                <tr>
+                    <th>狀態</th>
+                    <td class="text-success">退款</td>
+                </tr>
+                <tr>
+                    <th>虛擬帳號</th>
+                    <td>11111111111</td>
+                </tr>
+                <tr>
+                    <th>預定撥款時間</th>
+                    <td>2023/4/10 上午 12:00:00</td>
+                </tr>
+                <tr>
+                    <th>填表人</th>
+                    <td>填表人</td>
+                </tr>
+                <tr>
+                    <th>放行人</th>
+                    <td>放行人</td>
+                </tr>
+                <tr>
+                    <th>放行日期</th>
+                    <td>2022/11/1 上午 12:00:00</td>
+                </tr>
+                <tr>
+                    <th>備註</th>
+                    <td>
+                        <div id="searchps"></div>
+                        <input type="text" class="form-control form-control-sm" id="changeps" value="備註備註備註" />
+                    </td>
+                </tr>
+
+            </table>
+            <div class="text-center my-4">
+                <input class="btn btn-light btn-sm mx-2" onclick="resetC()" id="Reset" value="取消" type="button" />
+                <input class="btn btn-warning btn-sm mx-2" onclick="resetC()" id="save" value="更新" type="button" />
+                <input class="btn btn-primary btn-sm mx-2" onclick="edit()" id="Edit" value="編輯" type="button" />
+            </div>
+        </form>
+    </div>
+  </aside>
+
+<footer></footer>
+
+<script src="../Script/jquery-3.4.1.min.js"></script>
+<script src="../Script/bootstrap.bundle.min.js"></script>
+<script src="../Script/jquery-confirm.min.js"></script>
+<script>
+    $(document).ready(function(){
+      $('header').load('../share/nav.html');
+      $('footer').load('../share/footer.html');
+    });
+</script>
+    <!-- offcanvas script -->
+    <script>
+        var message = $('#Par_message2').val();
+        $('#changeps').hide();
+        $('#save').hide();
+        $('#Reset').hide();
+        function edit()
+        {
+            $('#searchps').hide();
+            $('#changeps').show();
+            $('#Edit').hide();
+            $('#save').show();
+            $('#Reset').show();
+        }
+        function resetC()
+        {
+            $('#searchps').show();
+            $('#changeps').hide();
+            $('#Edit').show();
+            $('#save').hide();
+            $('#Reset').hide();
+        }
+    </script>
+
+    <!-- loading -->
+    <script src="../Script/loading.js"></script>
+</body>
+</html>

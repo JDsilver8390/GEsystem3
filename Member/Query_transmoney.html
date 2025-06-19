@@ -1,0 +1,262 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <title>撥款紀錄查詢</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=3.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
+  <meta name="robots" content="None, Noimageindex,Noarchive">
+  <!-- browser thumbnail -->
+  <link rel="shortcut icon" href="../Images/ICON.png">
+  <link rel="apple-touch-icon" href="../Images/ICON.png">
+  <!-- framework & plugin css -->
+  <link rel="stylesheet" href="../css/bs5-pnEscrow.min.css">
+  <!-- style css -->
+  <link rel="stylesheet" href="../css/style.min.css">
+
+</head>
+<body>
+  <!-- loader -->
+<figure id="loaderBox">
+  <div id="loader"></div>
+</figure>
+
+  <header></header>
+
+  <main>
+    <input type="hidden" id="message" value="@ViewBag.message" />
+
+    <h1 class="pageTit">撥款紀錄查詢</h1>
+
+    <div class="container-fluid searchBox p-4">
+        <form class="searchBarH" action="../Member/Query_transmoney" method="post">
+            <fieldset class="row finds mb-4" id="query">
+                <div class="col-12">
+                    <div class="row">
+                        <label for="select" class="col-md-4 col-lg-2 col-form-label"><input class="form-check-input" type="checkbox" id="SV" />字串搜尋：</label>
+                        <div class="col-sm-5 col-md-3 col-lg-3">
+                            <select class="form-select form-select-sm" id="select" name="select">
+                                <option value="mem_name">受款人姓名</option>
+                                <option value="mem_id_256">受款人身份證字號</option>
+                                <option value="mem_bankaccno">受款人銀行代碼</option>
+                                <option value="mem_bankname">受款人戶名</option>
+                                <option value="mem_bankacc">受款人銀行帳號</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-7 col-md-5 col-lg-7">
+                            <input type="text" class="form-control form-control-sm" id="textvalue" name="textvalue" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="row">
+                        <label for="TransdateStart" class="col-md-4 col-form-label"><input class="form-check-input" type="checkbox" id="TD" />撥款日期搜尋：</label>
+                        <div class="col-md-8">
+                            <div class="row days">
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control form-control-sm datetimepicker" id="TransdateStart" name="TransdateStart" placeholder="年-月-日" />
+                                </div>
+                                <div class="col-sm-2 bridge"><span>至</span></div>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control form-control-sm datetimepicker" id="TransdateEnd" name="TransdateEnd" placeholder="年-月-日" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="row">
+                        <label for="Batchid" class="col-md-4 col-lg-5 col-form-label"><input class="form-check-input" type="checkbox" id="BID" />撥款批次：</label>
+                        <div class="col-7 col-md-5 col-lg-4">
+                            <input type="tel" class="form-control form-control-sm" id="Batchid" name="Batchid" />
+                        </div>
+                        <div class="col-5 col-md-3">
+                            <select class="form-select form-select-sm" id="mark" name="mark">
+                                <option value=">">&gt;</option>
+                                <option value="&lt;">&lt;</option>
+                                <option value=">=">&gt;=</option>
+                                <option value="&lt;=">&lt;=</option>
+                                <option value="=">=</option>
+                                <option value="&lt;>">&lt;&gt;</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <div class="text-center">
+                <input id="cancel" class="btn btn-light mx-2" type="reset" value="清除" />
+                <input id="search" class="btn btn-primary mx-2" type="button" value="查詢" />
+            </div>
+
+        </form>
+
+        <section>
+            <div class="table-responsive mb-3">
+                <table class="table table-sm table-striped table-hover caption-top border tableSF">
+                    <caption>委託人指示之撥款明細表</caption>
+                    <thead>
+                        <tr>
+                          <th>類別</th>
+                          <th>匯款手續費</th>
+                          <th>代理商手續費</th>
+                          <th>退款手續費</th>
+                          <th>撥款日期</th>
+                          <th>撥款總額</th>
+                          <th>實撥金額</th>
+                          <th>批次</th>
+                          <th>是否快撥</th>
+                          <th>產檔</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                          <td>系統商</td>
+                          <td>0</td>
+                          <td>115,195</td>
+                          <td>2023/01/06</td>
+                          <td>8,064,474</td>
+                          <td>0</td>
+                          <td>8,179,669</td>
+                          <td>1</td>
+                          <td>否</td>
+                          <td><button class="btn btn-sm btn-info">是</button></td>
+                        </tr>
+                        <tr>
+                            <td>金流商</td>
+                            <td>0</td>
+                            <td>115,195</td>
+                            <td>2023/01/06</td>
+                            <td>8,064,474</td>
+                            <td>0</td>
+                            <td>8,179,669</td>
+                            <td>1</td>
+                            <td>否</td>
+                            <td><button class="btn btn-sm btn-info" disabled>否</button></td>
+                        </tr>
+                        <tr>
+                            <td>系統商</td>
+                            <td>0</td>
+                            <td>115,195</td>
+                            <td>2023/01/06</td>
+                            <td>8,064,474</td>
+                            <td>0</td>
+                            <td>8,179,669</td>
+                            <td>1</td>
+                            <td>否</td>
+                            <td><button class="btn btn-sm btn-info">是</button></td>
+                          </tr>
+                          <tr>
+                              <td>金流商</td>
+                              <td>0</td>
+                              <td>115,195</td>
+                              <td>2023/01/06</td>
+                              <td>8,064,474</td>
+                              <td>0</td>
+                              <td>8,179,669</td>
+                              <td>1</td>
+                              <td>否</td>
+                              <td><button class="btn btn-sm btn-info" disabled>否</button></td>
+                          </tr>
+                          <tr>
+                            <td>買家</td>
+                            <td>0</td>
+                            <td>115,195</td>
+                            <td>2023/01/06</td>
+                            <td>8,064,474</td>
+                            <td>0</td>
+                            <td>8,179,669</td>
+                            <td>1</td>
+                            <td>否</td>
+                            <td><button class="btn btn-sm btn-info">是</button></td>
+                          </tr>
+                          <tr>
+                              <td>金流商</td>
+                              <td>0</td>
+                              <td>115,195</td>
+                              <td>2023/01/06</td>
+                              <td>8,064,474</td>
+                              <td>0</td>
+                              <td>8,179,669</td>
+                              <td>99</td>
+                              <td>否</td>
+                              <td>無</td>
+                          </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <nav class="Page">
+                <ul class="pagination pagination-sm">
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Fisst">
+                        <span aria-hidden="true" class="bi bi-chevron-bar-left"></span>
+                    </a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                      <span aria-hidden="true" class="bi bi-chevron-left"></span>
+                    </a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item active" aria-current="page"><span class="page-link">3</span></li>
+                  <li class="page-item"><a class="page-link" href="#">4</a></li>
+                  <li class="page-item"><a class="page-link" href="#">5</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                      <span aria-hidden="true" class="bi bi-chevron-right"></span>
+                    </a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Last">
+                      <span aria-hidden="true" class="bi bi-chevron-bar-right"></span>
+                    </a>
+                  </li>
+                </ul>
+                <small class="text-muted">全部頁數：120 / 資料筆數：123</small>
+            </nav>
+
+            <div class="mt-5 container bg-dark p-3">
+                <div class="row gx-5 gy-3 items">
+                    <div class="col-auto">資料總筆數：<span>8625</span></div>
+                    <div class="col-auto">交易總筆數：<span>397642</span></div>
+                    <div class="col-auto">交易總金額：<span>1,526,317,270</span></div>
+                    <div class="col-auto">代償金額：<span class="text-danger">0</span></div>
+                    <div class="col-auto">匯款手續費：<span>76,805</span></div>
+                    <div class="col-auto">代理商手續費：<span>430,730</span></div>
+                    <div class="col-auto">信託手續費：<span>38,400</span></div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+  </main>
+
+    <footer></footer>
+
+  <script src="../Script/jquery-3.4.1.min.js"></script>
+  <script src="../Script/bootstrap.bundle.min.js"></script>
+  <script>
+      $(document).ready(function(){
+        $('header').load('../share/nav.html');
+        $('footer').load('../share/footer.html');
+      });
+
+      //日期時間選擇限制
+      $.datetimepicker.setLocale('ch');
+        $('.datetimepicker').datetimepicker({
+            format : 'Y-m-d',
+            timepicker : false,
+            autoclose: true
+        });
+  </script>
+
+    <!-- loading -->
+    <script src="../Script/loading.js"></script>
+</body>
+</html>

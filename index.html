@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=3.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
+  <meta name="robots" content="None, Noimageindex,Noarchive">
+  <!-- browser thumbnail -->
+  <link rel="shortcut icon" href="Images/ICON.png">
+  <link rel="apple-touch-icon" href="Images/ICON.png">
+  <script src="Script/modernizr-2.8.3.min.js"></script>
+  <!-- framework & plugin css -->
+  <link rel="stylesheet" href="css/bs5-pnEscrow.min.css">
+  <!-- style css -->
+  <link rel="stylesheet" href="css/style.min.css">
+  <style>
+    body{min-height: 100%;height: auto;display: block;}
+    i.bi{
+        margin-right: 5px;
+    }
+    .login_bg{
+        position: fixed;left: 0;top: 0;
+        width: 100vw;height: 100vh;
+        background:url(/src/Images/login_bg.svg) bottom right / cover no-repeat;
+        z-index: -1;
+    }
+    main{
+        max-width: 600px !important;
+    }
+    @media (min-width: 992px) {
+        .login_bg{
+            background:url(/src/Images/login_bg.svg) bottom center / 100% auto no-repeat;
+        }
+    }
+  </style>
+</head>
+<body class="p-4">
+
+<img src="Images/indexImg.png" alt="" style="position:absolute; left:-9999px;">
+
+<!-- loader -->
+<figure id="loaderBox">
+    <div id="loader"></div>
+</figure>
+
+<div class="login_bg"></div>
+
+    <main class="container p-4 border bg-dark at-slide-bt">
+
+        <h1 class="h3 text-center text-warning mb-4">登入GE系統</h1>
+        <hr class="mb-4">
+
+        <form class="form1 p-2" id="form1" action="/" method="post" novalidate>
+            <input name="__RequestVerificationToken" type="hidden" value="iwToZ1m2" />
+            <input type="hidden" id="message" />
+            <div class="mb-4 row">
+
+               <label for="Loginpw" class="col-sm-4 col-form-label"><i class="bi bi-key-fill"></i>測試密碼：</label>
+                <div class="enter col-sm-8">
+                    <div class="position-relative">
+                        <input class="form-control" id="Loginpw" name="Loginpw" minlength="4" maxlength="20" placeholder="請填入4碼驗證" type="Password" required />
+                        <i class="position-absolute top-50 end-0 translate-middle-y bi bi-eye-fill"></i>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="mb-4">
+
+            <a class="d-grid mx-auto">
+                <a class="btn bg-primary" style="width: 100%;" href="Member/home.html">登入</a>
+            </div>
+        </form>
+    </main>
+
+    <script src="Script/jquery-3.4.1.min.js"></script>
+    <script src="Script/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            //see pwd
+            $(".bi-eye-fill").click(function () {
+                if($(this).hasClass('bi-eye-fill')){
+                    $(this).parent('div').find('input').attr('type', 'text');
+                }else{
+                    $(this).parent('div').find('input').attr('type', 'password');
+                }
+                $(this).toggleClass('bi-eye-fill').toggleClass('bi-eye-slash-fill');
+            });
+
+        });
+    </script>
+
+    <!-- loading -->
+    <script src="Script/loading.js"></script>
+</body>
+</html>

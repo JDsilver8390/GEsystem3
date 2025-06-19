@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <title>產生撥款檔</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=3.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
+  <meta name="robots" content="None, Noimageindex,Noarchive">
+  <!-- browser thumbnail -->
+  <link rel="shortcut icon" href="../Images/ICON.png">
+  <link rel="apple-touch-icon" href="../Images/ICON.png">
+  <!-- framework & plugin css -->
+  <link rel="stylesheet" href="../css/bs5-pnEscrow.min.css">
+  <!-- style css -->
+  <link rel="stylesheet" href="../css/style.min.css">
+
+</head>
+<body>
+  <!-- loader -->
+<figure id="loaderBox">
+  <div id="loader"></div>
+</figure>
+
+  <header></header>
+
+  <main>
+    <input type="hidden" id="message" value="message" />
+
+    <h1 class="pageTit">產生撥款檔</h1>
+
+    <div class="container-fluid searchBox p-4">
+
+        <small>請選擇欲撥款的週期（請先從撥款日期前面的處理，因為系統一次會處理您選定的日期以前的全部未處理資料）</small>
+        <div class="table-responsive">
+            <table class="table table-sm table-striped table-hover border">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>撥款日期</th>
+                    <th>撥款總額</th>
+                    <th>撥款筆數</th>
+                    <th>放行主管</th>
+                    <th>撥款批次</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                        <input type="checkbox" class="btn-check" id="6" name="check" autocomplete="off">
+                        <label class="btn btn-sm btn-outline-primary" for="6">選取</label><br>
+                    </td>
+                    <td>2022/11/01</td>
+                    <td>2,939,353</td>
+                    <td>11</td>
+                    <td>測試主管1</td>
+                    <td>2</td>
+                    <td><a href="#" class="link-info">查看明細</a></td>
+                  </tr>
+                  <tr>
+                    <td>
+                        <input type="checkbox" class="btn-check" id="5" name="check" autocomplete="off">
+                        <label class="btn btn-sm btn-outline-primary" for="5">選取</label><br>
+                    </td>
+                    <td>2022/11/01</td>
+                    <td>2,939,353</td>
+                    <td>11</td>
+                    <td>測試主管1</td>
+                    <td>2</td>
+                    <td><a href="#" class="link-info">查看明細</a></td>
+                  </tr>
+                  <tr>
+                    <td>
+                        <input type="checkbox" class="btn-check" id="4" name="check" autocomplete="off">
+                        <label class="btn btn-sm btn-outline-primary" for="4">選取</label><br>
+                    </td>
+                    <td>2022/11/01</td>
+                    <td>2,939,353</td>
+                    <td>11</td>
+                    <td>測試主管1</td>
+                    <td>2</td>
+                    <td><a href="#" class="link-info">查看明細</a></td>
+                  </tr>
+                  <tr>
+                    <td>
+                        <input type="checkbox" class="btn-check" id="3" name="check" autocomplete="off">
+                        <label class="btn btn-sm btn-outline-primary" for="3">選取</label><br>
+                    </td>
+                    <td>2022/11/01</td>
+                    <td>2,939,353</td>
+                    <td>11</td>
+                    <td>測試主管1</td>
+                    <td>2</td>
+                    <td><a href="#" class="link-info">查看明細</a></td>
+                  </tr>
+
+                </tbody>
+              </table>
+        </div>
+        <button class="btn btn-sm btn-warning">產生媒體檔</button>
+
+    </div>
+  </main>
+
+
+  <footer></footer>
+
+    <script src="../Script/jquery-3.4.1.min.js"></script>
+    <script src="../Script/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function(){
+          $('header').load('../share/nav.html');
+          $('footer').load('../share/footer.html');
+        });
+    </script>
+
+    <!-- loading -->
+    <script src="../Script/loading.js"></script>
+</body>
+</html>
+
